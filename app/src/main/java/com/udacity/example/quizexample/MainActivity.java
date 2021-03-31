@@ -120,11 +120,15 @@ public class MainActivity extends AppCompatActivity {
 
     public void showDefinition() {
 
-        // Change button text
-        mButton.setText(getString(R.string.next_word));
+        if (mData != null) {
+            mDefTextView.setVisibility(View.VISIBLE);
 
-        // TODO (4) Show the definition
-        mCurrentState = STATE_SHOWN;
+            // Change button text
+            mButton.setText(getString(R.string.next_word));
+
+            // TODO (4) Show the definition
+            mCurrentState = STATE_SHOWN;
+        }
 
     }
 
@@ -132,6 +136,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         // TODO (5) Remember to close your cursor!
+        mData.close();
     }
 
     // Use an async task to do the data fetch off of the main thread.
